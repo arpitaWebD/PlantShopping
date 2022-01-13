@@ -7,6 +7,7 @@ export const $axios = axios.create();
 const store = createStore({
     state() {
         return {
+            cart: [],
             products: [
                 {
                     id: 1,
@@ -61,36 +62,14 @@ const store = createStore({
         };
     },
     mutations: {
-        addToCounter(state, payload) {
-            state.counter = state.counter + payload;
-            state.history.push(state.counter)
+        addToCart(state, payload) {
+            state.cart.push(payload);
         },
         
-        subToCounter(state, payload) {
-            state.counter = state.counter - payload;
-             state.history.push(state.counter)
+        removeToCart(state, payload) {
+            state.cart.splice(cart.indexOf(payload), 1);
        }  
     },
-    actions: {
-        // async addRandomNum(context) {
-        //  let data = await axios.get("https://www.random.org/integers/?num=1&min=-1000&max=1000&col=1&base=10&format=plain&rnd=new");
-        //     console.log(data);
-        //     context.commit("addToCounter", data.data)
-        
-        // }
-    },
-    getters: {
-        activeIndexes: (state) => (payload) => {
-            let indexes = [];
-            state.history.forEach((number, index) => {
-                if (number === payload) {
-                    indexes.push(index);
-                }
-            });
-            console.log(indexes);
-            return indexes;
-        }
-    }
 })
 
 createApp(App)
