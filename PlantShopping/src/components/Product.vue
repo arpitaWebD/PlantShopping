@@ -36,14 +36,6 @@
         >
           Add to cart
         </button>
-        <button
-          v-if="cart"
-          class="btn secondary-btn"
-          type="button"
-          @click="removeToCart(products)"
-        >
-          Remove to cart
-        </button>
       </div>
     </div>
   </div>
@@ -56,7 +48,7 @@ export default {
     ...mapState(["products", "cart"]),
   },
   methods: {
-    ...mapMutations(["addToCart", "removeToCart"]),
+    ...mapMutations(["addToCart"]),
   },
   props: ["products"],
 };

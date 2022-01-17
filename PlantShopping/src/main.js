@@ -17,6 +17,7 @@ const store = createStore({
                     url: "/src/assets/plan.jpg",
                     reviewCount: "98",
                     title: "tred",
+                    qty: 2,
                 },
                 {
                     id: 2,
@@ -25,6 +26,7 @@ const store = createStore({
                     shortdesc: "Classy, Stylish, Dope",
                     url: "/src/assets/plant-6.jpg",
                     reviewCount: "918",
+                     qty: 12,
                 },
                 {
                     id: 3,
@@ -33,6 +35,7 @@ const store = createStore({
                     shortdesc: "Elegance built in",
                     url: "/src/assets/plant-2.jpg",
                     reviewCount: "58",
+                     qty: 29,
                 },
                 {
                     id: 4,
@@ -41,6 +44,7 @@ const store = createStore({
                     shortdesc: "Sleek, Trendy, Clean",
                     url: "/src/assets/plant-3.jpg",
                     reviewCount: "48",
+                     qty: 21,
                 },
                 {
                     id: 5,
@@ -49,6 +53,7 @@ const store = createStore({
                     shortdesc: "Fabulous, Exotic, Classy",
                     url: "/src/assets/plant-4.jpg",
                     reviewCount: "28",
+                     qty: 8,
                 },
                 {
                     id: 6,
@@ -57,18 +62,33 @@ const store = createStore({
                     shortdesc: "Neat, Sleek, Smart",
                     url: "/src/assets/plant-5.jpg",
                     reviewCount: "38",
+                     qty: 42,
                 },
             ],
+            tPrice: [],
+            totalamount: "",
+            total:""
         };
     },
     mutations: {
         addToCart(state, payload) {
             state.cart.push(payload);
+           
         },
-        
         removeToCart(state, payload) {
-            state.cart.splice(cart.indexOf(payload), 1);
-       }  
+            state.cart.splice(state.cart.indexOf(payload), 1);
+        },
+        totalAmount(state, payload) {
+            state.totalamount = payload.price * payload.qty
+        },
+        totalPrice(state,payload) {
+            state.total = state.cart;
+            
+            console.log(state.total.price)
+            state.tPrice.push(state.total)
+            console.log("summ" + state.tPrice);
+        }
+      
     },
 })
 

@@ -2,7 +2,9 @@
   <div class="border-bottom header">
     <div class="row px-4 h-100 m-0">
       <div class="col-3 d-flex align-items-center p-0">
-        <img src="../assets/logo.png" alt="logo" class="logo" />
+        <router-link :to="{ name: 'Home' }">
+          <img src="../assets/logo.png" alt="logo" class="logo" />
+        </router-link>
       </div>
       <div class="col-9 p-0 d-flex">
         <div class="flex-grow-1">
@@ -15,16 +17,17 @@
           </ul>
         </div>
         <div class="d-flex align-items-center">
-          <router-link :to="{ name: 'AddCart' }">
-            <div class="me-3 cart-icon">
-              <i class="bi bi-bag fa-2x"></i>
-              <span
-                class="position-absolute bottom-0 start-100 translate-middle badge rounded-pill bg-danger"
-                >{{ cart.length }}</span
-              >
-            </div>
-          </router-link>
-
+          <div class="dropdown">
+            <router-link :to="{ name: 'AddCart' }">
+              <div class="me-3 cart-icon">
+                <i class="bi bi-bag fa-2x"></i>
+                <span
+                  class="position-absolute bottom-0 start-100 translate-middle badge rounded-pill bg-danger"
+                  >{{ cart.length }}</span
+                >
+              </div>
+            </router-link>
+          </div>
           <div class="me-3">
             <i class="bi bi-heart"></i>
           </div>
@@ -38,7 +41,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapMutations } from "vuex";
 export default {
   computed: {
     ...mapState(["products", "cart"]),

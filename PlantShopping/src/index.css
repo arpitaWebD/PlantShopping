@@ -209,6 +209,10 @@ input:focus {
   height: 290px;
 }
 
+.add-product img {
+  height: 90px;
+}
+
 .product-card .img-section {
   position: relative;
 }
