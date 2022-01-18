@@ -18,6 +18,7 @@ const store = createStore({
                     reviewCount: "98",
                     title: "tred",
                     qty: 2,
+                    likeProductq: true
                 },
                 {
                     id: 2,
@@ -26,7 +27,8 @@ const store = createStore({
                     shortdesc: "Classy, Stylish, Dope",
                     url: "/src/assets/plant-6.jpg",
                     reviewCount: "918",
-                     qty: 12,
+                    qty: 12,
+                      likeProductq: false
                 },
                 {
                     id: 3,
@@ -66,14 +68,20 @@ const store = createStore({
                 },
             ],
             tPrice: [],
-            totalamount: "",
-            total:""
+            wishList: [],
         };
     },
     mutations: {
         addToCart(state, payload) {
-            state.cart.push(payload);
-           
+             const cartProduct = state.cart.find(
+                    p => p.id === payload.id
+             );
+            if (cartProduct) {
+                return alert("Already added product in cart");
+            }
+             else {
+               state.cart.push(payload);
+            }    
         },
         removeToCart(state, payload) {
             state.cart.splice(state.cart.indexOf(payload), 1);
@@ -81,14 +89,34 @@ const store = createStore({
         totalAmount(state, payload) {
             state.totalamount = payload.price * payload.qty
         },
-        totalPrice(state,payload) {
-            state.total = state.cart;
-            
-            console.log(state.total.price)
-            state.tPrice.push(state.total)
-            console.log("summ" + state.tPrice);
+        likeProduct(state, payload) {
+            payload.likeProductq = !(payload.likeProductq);
+            return payload.likeProductq;
+        },
+        addToWishlist(state, payload) {
+            debugger
+            const wishlistProduct = state.wishList.find(
+                    p => p.id === payload.id
+             );
+            if (wishlistProduct) {
+                return alert("Already added product in wishlist");
+            }
+             else {
+                state.wishList.push(payload);
+            }
         }
-      
+    },
+    getters: {
+        getItems(state, payload) {
+            let totalItems = 0;
+            state.cart.forEach(payload => (totalItems += payload.qty));
+            return totalItems;
+        },
+        getTotalPrice: (state,payload) => {
+            let totalPrice = 0;
+            state.cart.forEach(payload => (totalPrice += payload.price * payload.qty));
+            return totalPrice;
+        },     
     },
 })
 

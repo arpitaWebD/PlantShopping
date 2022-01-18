@@ -2,8 +2,14 @@
   <div class="product-card p-4 border my-2">
     <div class="img-section text-center">
       <img :src="products.url" alt="product img" />
-      <div class="like-icon">
-        <i class="bi bi-heart"></i>
+      <div class="like-icon" @click="addToWishlist(products)">
+        <!-- @click="likeProduct(products, index)" -->
+        <i
+          class="bi"
+          :class="[
+            products.likeProductq ? 'bi-heart' : 'bi-heart-fill fav-icon',
+          ]"
+        ></i>
       </div>
     </div>
     <div class="mt-2">
@@ -45,10 +51,10 @@
 import { mapState, mapMutations } from "vuex";
 export default {
   computed: {
-    ...mapState(["products", "cart"]),
+    ...mapState(["products", "cart", "wishList"]),
   },
   methods: {
-    ...mapMutations(["addToCart"]),
+    ...mapMutations(["addToCart", "likeProduct", "addToWishlist"]),
   },
   props: ["products"],
 };

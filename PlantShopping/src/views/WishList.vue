@@ -1,9 +1,9 @@
 <template>
   <div class="addCart-card">
-    <div class="h-100 overflow-auto" v-if="cart.length > 0">
-      <div class="row g-3 m-0 px-4 pb-3 product-detail">
-        <h3 class="mb-2 fw-bold">My Cart:</h3>
-        <div class="col-sm-12" v-for="product in cart" :key="product">
+    <div class="h-100 overflow-auto" v-if="wishList.length > 0">
+      <div class="row g-3 m-0 px-4 pb-3">
+        <h3 class="mb-2 fw-bold">My WishList:</h3>
+        <div class="col-sm-12" v-for="product in wishList" :key="product">
           <div class="product-card p-4 border row add-product">
             <div class="col-sm-12 col-md-2 img-section text-center">
               <img :src="product.url" alt="product img" height="90" />
@@ -16,10 +16,6 @@
             <div
               class="col-sm-12 col-md-5 d-flex flex-column flex-sm-row align-items-center justify-content-between"
             >
-              <div>qty {{ product.qty }}</div>
-
-              <div>Total {{ totalAmount(product) }} {{ totalamount }}</div>
-
               <div class="d-flex flex-column">
                 <span class="price-name">Price</span>
                 <span
@@ -31,49 +27,32 @@
                   v-if="cart"
                   class="btn secondary-btn"
                   type="button"
-                  @click="removeToCart(product)"
+                  @click="addToCart(product)"
                 >
-                  Remove to cart
+                  Add to cart
                 </button>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="p-4 border-top">
-        <div><b>Total Price:</b> {{ getTotalPrice }}</div>
-        <div><b>Total Items:</b> {{ getItems }}</div>
-      </div>
     </div>
     <div v-else class="h-100 d-flex align-items-center justify-content-center">
-      <img src="../assets/empty-cart.png" alt="empty cart" />
+      <img src="../assets/no_wish_list.png" alt="empty wishlist" />
     </div>
   </div>
 </template>
 
 <script>
-import { mapState, mapMutations, mapGetters } from "vuex";
+import { mapState, mapMutations } from "vuex";
 export default {
-  name: "AddCart",
+  name: "WishList:",
 
   computed: {
-    ...mapState(["products", "cart", "tPrice", "totalamount"]),
-    ...mapGetters(["getTotalPrice", "getItems"]),
-  },
-  date() {
-    return {
-      p: 0,
-    };
+    ...mapState(["products", "wishList"]),
   },
   methods: {
-    ...mapMutations(["removeToCart", "totalAmount"]),
-
-    qtyCount() {
-      const p = this.cart.map((p) => p.price);
-      const totalQty = p * this.selectQty;
-      console.log(totalQty);
-      console.log(this.selectQty);
-    },
+    ...mapMutations(["addToCart"]),
   },
 };
 </script>
