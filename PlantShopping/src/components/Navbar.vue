@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light border-bottom header">
+  <nav class="navbar navbar-expand-md navbar-light border-bottom header">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">
         <router-link :to="{ name: 'Home' }">

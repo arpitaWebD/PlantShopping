@@ -11,100 +11,136 @@ const store = createStore({
             products: [
                 {
                     id: 1,
-                    name: "Chelsea Shoes",
+                    name: "Aluminum Plant",
                     price: 200,
                     shortdesc: "Best Drip in the Market",
                     url: "/src/assets/plan.jpg",
                     reviewCount: "98",
                     title: "tred",
-                    qty: 2,
-                    likeProductq: true
+                    qty: 1,
+                    likeProductq: false,
+                    tprice: 0,
+                    subname: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
                 },
                 {
                     id: 2,
-                    name: "Kimono",
+                    name: "Areca Palm",
                     price: 50,
                     shortdesc: "Classy, Stylish, Dope",
                     url: "/src/assets/plant-6.jpg",
                     reviewCount: "918",
-                    qty: 12,
-                      likeProductq: false
+                    qty: 1,
+                    likeProductq: false
                 },
                 {
                     id: 3,
-                    name: "Watch",
+                    name: "Arrowhead",
                     price: 2500,
                     shortdesc: "Elegance built in",
                     url: "/src/assets/plant-2.jpg",
                     reviewCount: "58",
-                     qty: 29,
+                    qty: 1,
+                    likeProductq: false
                 },
                 {
                     id: 4,
-                    name: "Wallet",
+                    name: "Broadleaf Lady Palm",
                     price: 80,
                     shortdesc: "Sleek, Trendy, Clean",
                     url: "/src/assets/plant-3.jpg",
                     reviewCount: "48",
-                     qty: 21,
+                    qty: 1,
+                    likeProductq: false
                 },
                 {
                     id: 5,
-                    name: "Lady Handbags",
+                    name: "Chinese Evergreen",
                     price: 230,
                     shortdesc: "Fabulous, Exotic, Classy",
                     url: "/src/assets/plant-4.jpg",
                     reviewCount: "28",
-                     qty: 8,
+                    qty: 1,
+                    likeProductq: false
                 },
                 {
                     id: 6,
-                    name: "Casual Shirts",
+                    name: "Canary Date Palm",
                     price: 30,
                     shortdesc: "Neat, Sleek, Smart",
                     url: "/src/assets/plant-5.jpg",
                     reviewCount: "38",
-                     qty: 42,
+                    qty: 1,
+                    likeProductq: false
                 },
             ],
-            tPrice: [],
+            tPrice: 0,
             wishList: [],
+            qtyValue: 1,
+            showPreview: false,
+            productPreviews: [],
+            tabDetails: false,
+            tabReviews: false,
         };
     },
     mutations: {
         addToCart(state, payload) {
              const cartProduct = state.cart.find(
-                    p => p.id === payload.id
+                p => p.id === payload.id
              );
             if (cartProduct) {
-                return alert("Already added product in cart");
+                payload.qty++;
+                payload.tprice = payload.price * payload.qty;
             }
              else {
                state.cart.push(payload);
             }    
         },
+        addQty(state, payload) {
+            if (payload.qty < 10) {
+                payload.qty++;
+            }
+            payload.tprice = payload.price * payload.qty;
+        },
+        removeQty(state, payload) {
+            if (payload.qty > 0) {
+                payload.qty--;
+            }
+            payload.tprice = payload.price * payload.qty;
+        },
         removeToCart(state, payload) {
             state.cart.splice(state.cart.indexOf(payload), 1);
-        },
-        totalAmount(state, payload) {
-            state.totalamount = payload.price * payload.qty
         },
         likeProduct(state, payload) {
             payload.likeProductq = !(payload.likeProductq);
             return payload.likeProductq;
         },
-        addToWishlist(state, payload) {
-            debugger
+        addToWishlist(state, payload, likeProductq) {
+            payload.likeProductq = !payload.likeProductq;
             const wishlistProduct = state.wishList.find(
-                    p => p.id === payload.id
-             );
-            if (wishlistProduct) {
-                return alert("Already added product in wishlist");
+                p => p.id === payload.id
+            );
+            console.log(payload.likeProductq);
+            if ( (payload.likeProductq === true)) {
+                if (wishlistProduct) {
+                    console.log("fail");
+                }
+                else {
+                    state.wishList.push(payload);
+                    console.log("sucess");
+                }   
             }
-             else {
-                state.wishList.push(payload);
+            else {
+               state.wishList.splice(state.wishList.indexOf(payload),1);
             }
-        }
+        },
+        productPreview(state,payload) {
+            state.showPreview = true;
+            state.productPreviews.push(payload);
+        },
+        clsoePreview(state, payload) {
+            state.showPreview = false;
+            state.productPreviews.splice(state.productPreviews.indexOf(payload));
+        },
     },
     getters: {
         getItems(state, payload) {
@@ -116,7 +152,7 @@ const store = createStore({
             let totalPrice = 0;
             state.cart.forEach(payload => (totalPrice += payload.price * payload.qty));
             return totalPrice;
-        },     
+        },
     },
 })
 
