@@ -1,5 +1,5 @@
 <template>
-  <div class="col-md-3 col-lg-2 p-0 border-end left-sidebar">
+  <div class="col-md-4 col-lg-3 col-xl-2 p-0 border-end left-sidebar h-100">
     <div class="border-bottom px-4 py-2">
       <span class="left-sidebar-header">filter</span>
     </div>

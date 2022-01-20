@@ -7,24 +7,24 @@
         ></span>
         <div class="text-center">
           <img
-            class="img-fluid"
+            class="img-fluid img-section"
             :src="productPreviews.url"
             alt="product"
             height="250"
           />
         </div>
 
-        <div class="rs-slider d-flex justify-content-between mt-4">
-          <div class="rs-slider-img">
+        <div class="rs-slider d-flex mt-4">
+          <div class="rs-slider-img mx-2">
             <img src="../assets/slider-1.jpg" alt="slider1" />
           </div>
-          <div class="rs-slider-img">
+          <div class="rs-slider-img mx-2">
             <img src="../assets/slider-1.jpg" alt="slider1" />
           </div>
-          <div class="rs-slider-img">
+          <div class="rs-slider-img mx-2">
             <img src="../assets/slider-1.jpg" alt="slider1" />
           </div>
-          <div class="rs-slider-img">
+          <div class="rs-slider-img mx-2">
             <img src="../assets/slider-4.jpg" alt="slider1" />
           </div>
         </div>

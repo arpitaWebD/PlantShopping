@@ -1,22 +1,23 @@
 <template>
-  <div class="col-lg-10 col-md-9 p-0">
-    <div class="row m-0">
+  <div class="col-lg-9 col-xl-10 col-md-8 p-0 h-100">
+    <div class="row m-0 h-100">
       <div
-        class="border-end p-4"
-        :class="[showPreview ? 'col-lg-9 col-md-8' : 'col-lg-12 col-md-12']"
+        class="border-end p-4 h-100 overflow-auto"
+        :class="[showPreview ? 'col-md-7 col-lg-8' : 'col-lg-12 col-md-12']"
       >
-        <div class="row g-3 m-0 px-4">
+        <Search />
+        <div class="row g-3 m-0">
           <div
-            class="col-sm-12 col-lg-4"
-            :class="[showPreview ? 'col-md-12' : 'col-md-6']"
-            v-for="(product, index) in products"
+            class="col-sm-12 "
+            :class="[showPreview ? 'col-md-12 col-xl-6 col-xxl-4' : 'col-md-6 col-lg-4']"
+            v-for="(product, index) in filterdState"
             :key="index"
           >
             <Product :products="product" />
           </div>
         </div>
       </div>
-      <div class="col-lg-3 col-md-4 p-0" v-show="showPreview">
+      <div class="col-md-5 col-lg-4 p-0" v-show="showPreview">
         <ProductPreview
           v-for="productPreview in productPreviews"
           :key="productPreview.id"
@@ -30,14 +31,17 @@
 <script>
 import Product from "../components/Product.vue";
 import ProductPreview from "../components/ProductPreview.vue";
-import { mapMutations, mapState } from "vuex";
+import Search from "../components/Search.vue";
+import { mapMutations, mapState,mapGetters } from "vuex";
 export default {
   components: {
     Product,
     ProductPreview,
+    Search
   },
   computed: {
-    ...mapState(["products", "showPreview", "productPreviews"]),
+    ...mapState(["products", "search","showPreview", "productPreviews","filterdState"]),
+    ...mapGetters(["getProduct"]),
   },
   methods: {
     ...mapMutations(["productPreview"]),

@@ -236,9 +236,8 @@ input:focus {
 
 /* right0sidebar */
 .right-sidebar {
-  position: sticky;
-  top: 0;
-  height: calc(100vh - 80px);
+  position: relative;
+  height: 100%;
 }
 
 .rs-footer {
@@ -256,7 +255,9 @@ input:focus {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-
+.right-sidebar .img-section {
+  height: 200px;
+}
 .right-sidebar .main-subtitle {
   font-size: 14px;
   color: #ababb8;
@@ -386,14 +387,14 @@ input:focus {
 
 .addCart-card {
   height: calc(100% - 80px);
-  overflow: auto;
+  overflow: hidden;
 }
 
 .fav-icon {
   color: #dc3545;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
   .product-card img {
     height: 290px;
     width: 100%;

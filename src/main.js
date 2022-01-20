@@ -80,6 +80,9 @@ const store = createStore({
             productPreviews: [],
             tabDetails: false,
             tabReviews: false,
+            search: "",
+            filterdState: [],
+            modal: false,
         };
     },
     mutations: {
@@ -158,9 +161,27 @@ const store = createStore({
             }
 
         },
-
+        filterProduct: function () {
+            return this.products.filter((product) => {
+                var productName = product.name.toLowerCase();
+                var searchName = this.search.toLowerCase();
+                return productName.includes(searchName);
+            });
+        },
+        setState(state,payload) {
+            state.search = search.name;
+            state.modal = false;
+        },
+        // clear search
+        close(state,payload) {
+            state.search = "";
+            state.modal = false;
+        },
     },
     getters: {
+        getProduct(state) {
+            state.filterdState;
+        },
         getItems(state, payload) {
             let totalItems = 0;
             state.cart.forEach(payload => (totalItems += payload.qty));
@@ -171,6 +192,9 @@ const store = createStore({
             state.cart.forEach(payload => (totalPrice += payload.price * payload.qty));
             return totalPrice;
         },
+        getSearch(state) {
+            state.search;
+        }
     },
 })
 
