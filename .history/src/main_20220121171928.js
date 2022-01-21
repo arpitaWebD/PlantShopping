@@ -87,16 +87,16 @@ const store = createStore({
     },
     mutations: {
         addToCart(state, payload) {
-            const cartProduct = state.cart.find(
+             const cartProduct = state.cart.find(
                 p => p.id === payload.id
-            );
+             );
             if (cartProduct) {
                 payload.qty++;
                 payload.tprice = payload.price * payload.qty;
             }
-            else {
-                state.cart.push(payload);
-            }
+             else {
+               state.cart.push(payload);
+            }    
         },
         addQty(state, payload) {
             if (payload.qty < 10) {
@@ -123,24 +123,24 @@ const store = createStore({
                 p => p.id === payload.id
             );
             console.log(payload.likeProductq);
-            if ((payload.likeProductq === true)) {
+            if ( (payload.likeProductq === true)) {
                 if (wishlistProduct) {
                     console.log("fail");
                 }
                 else {
                     state.wishList.push(payload);
                     console.log("sucess");
-                }
+                }   
             }
             else {
-                state.wishList.splice(state.wishList.indexOf(payload), 1);
+               state.wishList.splice(state.wishList.indexOf(payload),1);
             }
         },
         clsoePreview(state, payload) {
             state.showPreview = false;
             state.productPreviews.splice(state.productPreviews.indexOf(payload));
         },
-        productPreview(state, payload) {
+        productPreview(state,payload) {
             state.showPreview = true;
             const alreadyProduct = state.productPreviews.find(
                 p => p.id === payload.id
@@ -148,11 +148,11 @@ const store = createStore({
             var nalreadyProduct = state.productPreviews.find(
                 p => p.id !== payload.id
             );
-            if (alreadyProduct) {
+            if(alreadyProduct) {
                 state.showPreview = false;
                 state.productPreviews.splice(state.productPreviews.indexOf(payload));
             }
-            else if (alreadyProduct != nalreadyProduct) {
+            else if(alreadyProduct != nalreadyProduct) {
                 state.productPreviews.splice(state.productPreviews.indexOf(alreadyProduct));
                 state.productPreviews.push(payload);
             }
@@ -168,12 +168,12 @@ const store = createStore({
                 return productName.includes(searchName);
             });
         },
-        setState(state, payload) {
+        setState(state,payload) {
             state.search = search.name;
             state.modal = false;
         },
         // clear search
-        close(state, payload) {
+        close(state,payload) {
             state.search = "";
             state.modal = false;
         },
@@ -187,24 +187,14 @@ const store = createStore({
             state.cart.forEach(payload => (totalItems += payload.qty));
             return totalItems;
         },
-        getTotalPrice: (state, payload) => {
+        getTotalPrice: (state,payload) => {
             let totalPrice = 0;
             state.cart.forEach(payload => (totalPrice += payload.price * payload.qty));
             return totalPrice;
         },
         getSearch(state) {
             state.search;
-        },
-        // filterState(state, payload) {
-        //     if (state.search.length == 0) {
-        //         state.filterdState = state.products;
-        //     }
-        //     state.filterdState = state.products.filter((product) => {
-        //         var stateName = product.name.toLowerCase();
-        //         var searchName = state.search.toLowerCase();
-        //         return stateName.includes(searchName);
-        //     });
-        // },
+        }
     },
 })
 

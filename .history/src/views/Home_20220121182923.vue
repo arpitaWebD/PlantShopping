@@ -1,6 +1,6 @@
 <template>
   <div class="addCart-card row p-0 m-0 flex-grow-1 main">
-    <test1/>
+    <!-- <test1/> -->
     <test2/>
     <test3/>
     <LeftSidebar />

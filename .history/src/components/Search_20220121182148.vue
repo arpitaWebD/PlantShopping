@@ -54,7 +54,7 @@
       return {
         color: 'blue',
       }
-    },
+    }
         computed: {
             ...mapState(["products","search", "filterdState"]),
             ...mapGetters(["getProduct","getSearch"]),
@@ -73,10 +73,3 @@
         }
     };
 </script>
-
-<style scoped>
-  .text {
-    color: v-bind(color); /* This works */
-    font-size: 20px; /* This works */
-  }
-</style>

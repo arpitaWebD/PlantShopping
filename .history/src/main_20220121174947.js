@@ -195,16 +195,16 @@ const store = createStore({
         getSearch(state) {
             state.search;
         },
-        // filterState(state, payload) {
-        //     if (state.search.length == 0) {
-        //         state.filterdState = state.products;
-        //     }
-        //     state.filterdState = state.products.filter((product) => {
-        //         var stateName = product.name.toLowerCase();
-        //         var searchName = state.search.toLowerCase();
-        //         return stateName.includes(searchName);
-        //     });
-        // },
+        filterState(product) {
+            if (this.search.length == 0) {
+                this.filterdState = this.products;
+            }
+            this.filterdState = this.products.filter((product) => {
+                var stateName = product.name.toLowerCase();
+                var searchName = this.search.toLowerCase();
+                return stateName.includes(searchName);
+            });
+        },
     },
 })
 

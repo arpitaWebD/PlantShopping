@@ -3,10 +3,6 @@ import { createRouter, createWebHistory } from "vue-router";
 import Home from "./views/Home.vue";
 import AddCart from "./views/AddToCart.vue";
 import WishList from "./views/WishList.vue";
-import test1 from "./components/Test/test1.vue";
-import test2 from "./components/Test/test2.vue";
-import test3 from "./components/Test/test3.vue";
-
 const routes = [
     {
         path: "/",

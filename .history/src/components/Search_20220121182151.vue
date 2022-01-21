@@ -73,10 +73,3 @@
         }
     };
 </script>
-
-<style scoped>
-  .text {
-    color: v-bind(color); /* This works */
-    font-size: 20px; /* This works */
-  }
-</style>

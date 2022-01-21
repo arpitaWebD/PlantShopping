@@ -1,19 +1,16 @@
 <template>
-<div class="text">Test1</div>
-  {{ color }} <!-- This works -->
     <div class="search-menu mb-2">
         <div class="d-flex search-icon" :class="{ 'search-icon-round': modal }">
             <span class="me-2"><i class="bi bi-search"></i></span>
             <input
                     type="text"
                     placeholder="Search"
-                    :v-model="search"
+                    v-model="search"
                     class="flex-grow-1 border-0"
                     @input="getProduct"
                     @focus="modal = true"
             />
-            {{}}
-            {{getSearch}}
+            {{search}}
             <button
                     type="button"
                     class="btn-close btn-sm btn"
@@ -50,11 +47,6 @@
 <script>
     import { mapGetters, mapState,mapMutations } from "vuex";
     export default {
-         data() {
-      return {
-        color: 'blue',
-      }
-    },
         computed: {
             ...mapState(["products","search", "filterdState"]),
             ...mapGetters(["getProduct","getSearch"]),
@@ -73,10 +65,3 @@
         }
     };
 </script>
-
-<style scoped>
-  .text {
-    color: v-bind(color); /* This works */
-    font-size: 20px; /* This works */
-  }
-</style>
