@@ -1,0 +1,24 @@
+<template>
+  <form>
+    <label>Email</label>
+    <input type="text" placeholder="Email" v-model="form.email" />
+    <label>Pass</label>
+    <input type="password" placeholder="Pass" v-model="form.pass" />
+  </form>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      form: {
+        email: "",
+        pass: "",
+      },
+    };
+  },
+};
+</script>
+
+<style>
+</style>
