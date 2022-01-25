@@ -140,6 +140,7 @@ const store = createStore({
             state.productPreviews.splice(state.productPreviews.indexOf(payload));
         },
         productPreview(state, payload) {
+
             state.showPreview = true;
             const alreadyProduct = state.productPreviews.find(
                 p => p.id === payload.id

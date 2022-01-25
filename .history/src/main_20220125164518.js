@@ -140,6 +140,7 @@ const store = createStore({
             state.productPreviews.splice(state.productPreviews.indexOf(payload));
         },
         productPreview(state, payload) {
+            debugger
             state.showPreview = true;
             const alreadyProduct = state.productPreviews.find(
                 p => p.id === payload.id
@@ -149,15 +150,19 @@ const store = createStore({
             );
             if (alreadyProduct) {
                 state.showPreview = false;
+                state.isActive = true;
                 state.productPreviews.splice(state.productPreviews.indexOf(payload));
             }
             else if (alreadyProduct != nalreadyProduct) {
+
                 state.modal = false;
+                state.isActive = true;
                 state.productPreviews.splice(state.productPreviews.indexOf(alreadyProduct));
                 state.productPreviews.push(payload);
             }
             else {
                 state.modal = false;
+                state.isActive = true;
                 state.productPreviews.push(payload);
             }
 

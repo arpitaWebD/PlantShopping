@@ -153,6 +153,7 @@ const store = createStore({
             }
             else if (alreadyProduct != nalreadyProduct) {
                 state.modal = false;
+                state.isActive = true;
                 state.productPreviews.splice(state.productPreviews.indexOf(alreadyProduct));
                 state.productPreviews.push(payload);
             }

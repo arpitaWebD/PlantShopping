@@ -54,7 +54,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(["products", "showPreview", "productPreviews", "isActive"]),
+    ...mapState(["products", "showPreview", "productPreviews"]),
     ...mapGetters(["getProduct"]),
 
     filterProduct() {

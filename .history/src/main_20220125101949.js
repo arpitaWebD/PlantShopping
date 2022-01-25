@@ -80,8 +80,7 @@ const store = createStore({
             productPreviews: [],
             tabDetails: false,
             tabReviews: false,
-            modal: false,
-            isActive: false,
+            modal: false
         };
     },
     mutations: {
@@ -153,6 +152,7 @@ const store = createStore({
             }
             else if (alreadyProduct != nalreadyProduct) {
                 state.modal = false;
+                isActive = true
                 state.productPreviews.splice(state.productPreviews.indexOf(alreadyProduct));
                 state.productPreviews.push(payload);
             }

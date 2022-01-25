@@ -80,8 +80,7 @@ const store = createStore({
             productPreviews: [],
             tabDetails: false,
             tabReviews: false,
-            modal: false,
-            isActive: false,
+            modal: false
         };
     },
     mutations: {

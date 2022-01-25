@@ -22,7 +22,7 @@
         <li
           v-for="filterdState in filterProduct"
           :key="filterdState.id"
-          :class="{ active: !isActive }"
+          :class="{ active: isActive }"
           @click="productPreview(filterdState)"
         >
           <div class="row">
@@ -61,7 +61,7 @@ export default {
     filterProduct: Function,
   },
   computed: {
-    ...mapState(["modal", "isActive"]),
+    ...mapState(["modal"]),
   },
   methods: {
     //clear search product

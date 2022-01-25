@@ -22,8 +22,8 @@
         <li
           v-for="filterdState in filterProduct"
           :key="filterdState.id"
-          :class="{ active: !isActive }"
-          @click="productPreview(filterdState)"
+          :class="{ active: isActive }"
+          @click="productPreview(filterdState) && modal == false"
         >
           <div class="row">
             <div class="col-2 d-flex justify-content-center align-items-center">
@@ -54,6 +54,7 @@ export default {
     return {
       search: "",
       modal: false,
+      isActive: false,
     };
   },
   props: {
@@ -61,7 +62,7 @@ export default {
     filterProduct: Function,
   },
   computed: {
-    ...mapState(["modal", "isActive"]),
+    ...mapState(["modal"]),
   },
   methods: {
     //clear search product

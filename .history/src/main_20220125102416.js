@@ -152,7 +152,9 @@ const store = createStore({
                 state.productPreviews.splice(state.productPreviews.indexOf(payload));
             }
             else if (alreadyProduct != nalreadyProduct) {
+                debugger
                 state.modal = false;
+                state.isActive = true;
                 state.productPreviews.splice(state.productPreviews.indexOf(alreadyProduct));
                 state.productPreviews.push(payload);
             }
