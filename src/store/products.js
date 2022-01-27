@@ -67,7 +67,6 @@ const products = {
             },
         ],
         wishList: [],
-        qtyValue: 1,
         showPreview: false,
         productPreviews: [],
         modal: false,
@@ -78,11 +77,19 @@ const products = {
                 p => p.id === payload.id
             );
             if (cartProduct) {
-                payload.qty++;
-                payload.tprice = payload.price * payload.qty;
+                if( payload.qty < 10) {
+                    payload.qty++;
+                    payload.tprice = payload.price * payload.qty;
+                }
+                else {
+                    alert("You only Add 10 products per Account");
+                }
             } else {
                 state.cart.push(payload);
             }
+        },
+        removeToCart(state, payload) {
+            state.cart.splice(state.cart.indexOf(payload), 1);
         },
         addQty(state, payload) {
             if (payload.qty < 10) {
@@ -93,12 +100,13 @@ const products = {
         removeQty(state, payload) {
             if (payload.qty > 0) {
                 payload.qty--;
+                if(payload.qty === 0 ){
+                    state.cart.splice(state.cart.indexOf(payload), 1);
+                }
             }
             payload.tprice = payload.price * payload.qty;
         },
-        removeToCart(state, payload) {
-            state.cart.splice(state.cart.indexOf(payload), 1);
-        },
+
         removeWishList(state, payload) {
             state.wishList.splice(state.wishList.indexOf(payload), 1);
             payload.likeProductq = !(payload.likeProductq);
@@ -107,7 +115,7 @@ const products = {
             payload.likeProductq = !(payload.likeProductq);
             return payload.likeProductq;
         },
-        addToWishlist(state, payload, likeProductq) {
+        addToWishlist(state, payload) {
             payload.likeProductq = !payload.likeProductq;
             const wishlistProduct = state.wishList.find(
                 p => p.id === payload.id
@@ -164,12 +172,12 @@ const products = {
         getProductPreviews(state) {
             return state.productPreviews
         },
-        getItems(state, payload) {
+        getItems(state) {
             let totalItems = 0;
             state.cart.forEach(payload => (totalItems += payload.qty));
             return totalItems;
         },
-        getTotalPrice: (state, payload) => {
+        getTotalPrice: (state) => {
             let totalPrice = 0;
             state.cart.forEach(payload => (totalPrice += payload.price * payload.qty));
             return totalPrice;

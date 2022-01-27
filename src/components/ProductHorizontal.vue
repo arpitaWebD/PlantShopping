@@ -61,7 +61,7 @@
                                             type="button"
                                             @click="removeToCart(product)"
                                     >
-                                        Remove to getCart
+                                        Remove from cart
                                     </button>
                                 </div>
                             </div>
