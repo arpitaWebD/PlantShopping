@@ -66,15 +66,10 @@ const products = {
                 likeProductq: false
             },
         ],
-        tPrice: 0,
         wishList: [],
         qtyValue: 1,
         showPreview: false,
         productPreviews: [],
-        tabDetails: false,
-        tabReviews: false,
-        results: [],
-        filterdState: [],
         modal: false,
     },
     mutations: {
@@ -106,6 +101,7 @@ const products = {
         },
         removeWishList(state, payload) {
             state.wishList.splice(state.wishList.indexOf(payload), 1);
+            payload.likeProductq = !(payload.likeProductq);
         },
         likeProduct(state, payload) {
             payload.likeProductq = !(payload.likeProductq);
@@ -143,38 +139,14 @@ const products = {
             if (alreadyProduct) {
                 state.showPreview = false;
                 state.productPreviews.splice(state.productPreviews.indexOf(payload));
-            } else if (alreadyProduct != nalreadyProduct) {
+            } else if (alreadyProduct !== nalreadyProduct) {
                 state.productPreviews.splice(state.productPreviews.indexOf(alreadyProduct));
                 state.productPreviews.push(payload);
             } else {
                 state.productPreviews.push(payload);
             }
 
-        },
-        filterProduct: function () {
-            return state.products.filter((product) => {
-                var productName = product.name.toLowerCase();
-                var searchName = state.search.toLowerCase();
-                return productName.includes(searchName);
-            });
-        },
-        setState(state, payload) {
-            state.search = search.name;
-            state.modal = false;
-        },
-        // clear search
-        close(state, payload) {
-            state.search = "";
-            state.modal = false;
-        },
-        returnResults(state, search) {
-            return state.products.filter((product) => {
-                var productName = product.name.toLowerCase();
-                var searchName = state.search.toLowerCase();
-                return productName.includes(searchName);
-            });
-        },
-        returnResult1s: (state, results) => (state.results = results),
+        }
     },
     getters: {
         getProduct(state) {
@@ -202,12 +174,6 @@ const products = {
             state.cart.forEach(payload => (totalPrice += payload.price * payload.qty));
             return totalPrice;
         },
-        searchResult: (state) => state.results,
     },
-    actions: {
-        async getSearchResults({commit}, query) {
-            commit('returnResults', query)
-        },
-    }
-}
+};
 export default products;

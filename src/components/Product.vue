@@ -1,5 +1,5 @@
 <template>
-  <div class="product-card p-4 border my-2" :class="{ active: ss }">
+  <div class="product-card p-4 border my-2">
     <div class="img-section text-center">
       <img
         :src="products.url"
@@ -51,11 +51,10 @@
 </template>
 
 <script>
-import { mapState, mapMutations,mapGetters } from "vuex";
+import { mapMutations,mapGetters } from "vuex";
 export default {
   computed: {
-    ...mapState(["wishlistProductt"]),
-    ...mapGetters(["getProduct","getCart", "getWishist"])
+    ...mapGetters(["getProduct","getCart", "getWishList"])
   },
   methods: {
     ...mapMutations([

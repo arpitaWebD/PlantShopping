@@ -88,13 +88,10 @@
 </template>
 
 <script>
-import { mapState, mapMutations,mapGetters } from "vuex";
+import { mapGetters } from "vuex";
 export default {
   computed: {
     ...mapGetters(["getCart","getWishList"]),
   },
-  methods: {
-    ...mapMutations(["addToCart"])
-  }
 };
 </script>
