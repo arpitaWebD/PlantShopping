@@ -1,8 +1,8 @@
 
 import { createRouter, createWebHistory } from "vue-router";
-import Home from "./views/Home.vue";
-import AddCart from "./views/AddToCart.vue";
-import WishList from "./views/WishList.vue";
+import Home from "../views/Home.vue";
+import ProductHorizontal from "../components/ProductHorizontal.vue";
+import WishList from "../views/WishList.vue";
 
 const routes = [
     {
@@ -13,12 +13,12 @@ const routes = [
     {
         path: "/AddCart",
         name: "AddCart",
-        component: AddCart
+        component: ProductHorizontal
     },
     {
         path: "/WishList",
         name: "WishList",
-        component: WishList
+        component: ProductHorizontal
     },
 ]
 const router = createRouter({

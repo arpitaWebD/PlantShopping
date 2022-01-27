@@ -3,7 +3,7 @@
     <div class="row m-0 h-100">
       <div
         class="border-end p-4 h-100 overflow-auto"
-        :class="[showPreview ? 'col-md-7 col-lg-8' : 'col-lg-12 col-md-12']"
+        :class="[getShowPreview ? 'col-md-7 col-lg-8' : 'col-lg-12 col-md-12']"
       >
         <Search :searchItem="searchItem" :filterProduct="filterProduct" />
         <div v-if="filterProduct.length">
@@ -11,7 +11,7 @@
             <div
               class="col-sm-12"
               :class="[
-                showPreview
+                getShowPreview
                   ? 'col-md-12 col-xl-6 col-xxl-4'
                   : 'col-md-6 col-lg-4',
               ]"
@@ -26,9 +26,9 @@
           <img src="../assets/no-result.png" />
         </div>
       </div>
-      <div class="col-md-5 col-lg-4 p-0" v-show="showPreview">
-        <ProductPreview
-          v-for="productPreview in productPreviews"
+      <div class="col-md-5 col-lg-4 p-0" v-show="getShowPreview">
+        <RightModalProduct
+          v-for="productPreview in getProductPreviews"
           :key="productPreview.id"
           :productPreviews="productPreview"
         />
@@ -39,13 +39,13 @@
 
 <script>
 import Product from "../components/Product.vue";
-import ProductPreview from "../components/ProductPreview.vue";
+import RightModalProduct from "../components/RightModalProduct.vue";
 import Search from "../components/Search.vue";
 import { mapMutations, mapState, mapGetters } from "vuex";
 export default {
   components: {
     Product,
-    ProductPreview,
+    RightModalProduct,
     Search,
   },
   data() {
@@ -54,11 +54,11 @@ export default {
     };
   },
   computed: {
-    ...mapState(["products", "showPreview", "productPreviews", "isActive"]),
-    ...mapGetters(["getProduct"]),
+    ...mapState([ "isActive"]),
+    ...mapGetters(["getProduct","getShowPreview","getProductPreviews"]),
 
     filterProduct() {
-      return this.products.filter((product) => {
+      return this.getProduct.filter((product) => {
         var productName = product.name.toLowerCase();
         var searchName = this.search.toLowerCase();
         return productName.includes(searchName);

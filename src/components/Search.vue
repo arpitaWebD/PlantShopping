@@ -17,16 +17,17 @@
                     @click="close()"
             ></button>
         </div>
-<!--        <div v-if="filterdState && modal" class="search-dropdown">-->
-<!--            <ul v-if="filterdState.length" class="list-unstyled mb-0">-->
+<!--        <div class="search-dropdown" :class="{ opened: modal }">-->
+<!--            <ul v-if="modal" class="list-unstyled mb-0">-->
 <!--                <li-->
-<!--                        v-for="filterdState in filterdState"-->
+<!--                        v-for="filterdState in filterProduct"-->
 <!--                        :key="filterdState.id"-->
-<!--                        @click="setState(filterdState)"-->
+<!--                        :class="{ active: !isActive }"-->
+<!--                        @click="productPreview(filterdState)"-->
 <!--                >-->
 <!--                    <div class="row">-->
 <!--                        <div class="col-2 d-flex justify-content-center align-items-center">-->
-<!--                            <img :src="filterdState.url" height="80" class="rounded-3" />-->
+<!--                            <img :src="filterdState.url" height="80" class="rounded-3"/>-->
 <!--                        </div>-->
 <!--                        <div class="d-flex flex-column col-10">-->
 <!--                            <span class="fw-bold">{{ filterdState.name }}</span>-->
@@ -36,7 +37,10 @@
 <!--                    </div>-->
 <!--                </li>-->
 <!--            </ul>-->
-<!--            <ul v-else class="list-unstyled mb-0">-->
+<!--            <ul-->
+<!--                    v-if="filterProduct.length == 0 && search.length > 0"-->
+<!--                    class="list-unstyled mb-0 no-result"-->
+<!--            >-->
 <!--                <li class="text-center fw-bold">No results...</li>-->
 <!--            </ul>-->
 <!--        </div>-->
@@ -44,16 +48,17 @@
 </template>
 
 <script>
-    import { mapGetters, mapState,mapActions } from "vuex";
+    import {mapGetters, mapState, mapActions} from "vuex";
+
     export default {
-         data() {
-      return {
-          search: ''
-      };
-    },
+        data() {
+            return {
+                search: ''
+            };
+        },
         computed: {
-            ...mapState(["products","search", "filterdState"]),
-            ...mapGetters(["getProduct","searchResult"]),
+            ...mapState(["products", "search", "filterdState"]),
+            ...mapGetters(["getProduct", "searchResult"]),
         },
         methods: {
             ...mapActions(["getSearchResults"]),

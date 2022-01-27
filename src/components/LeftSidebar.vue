@@ -92,16 +92,16 @@
             class="form-check-input"
             type="checkbox"
             value=""
-            id="flexCheckDefault"
+            id="flexCheckDefault0"
           />
         </div>
-        <div class="d-flex">
+        <label class="d-flex" for="flexCheckDefault0">
           <span class="ms-1"><i class="bi bi-star-fill"></i></span>
           <span class="ms-1"><i class="bi bi-star-fill"></i></span>
           <span class="ms-1"><i class="bi bi-star-fill"></i></span>
           <span class="ms-1"><i class="bi bi-star-half"></i></span>
           <span class="ms-1"><i class="bi bi-star"></i></span>
-        </div>
+        </label>
         <div class="ms-2">above</div>
       </div>
     </div>
@@ -116,9 +116,3 @@
     </div>
   </div>
 </template>
-
-<script>
-export default {};
-</script>
-
-<style></style>

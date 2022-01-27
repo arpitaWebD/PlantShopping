@@ -7,7 +7,7 @@
 
 <script>
 import ProductView from "../views/ProductView.vue";
-import LeftSidebar from "../views/LeftSidebar.vue";
+import LeftSidebar from "../components/LeftSidebar.vue";
 export default {
   name: "Home",
   components: {

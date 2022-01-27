@@ -41,7 +41,7 @@
         </div>
         <div class="d-flex justify-content-center align-items-center">
           <div class="dropdown">
-            <router-link :to="{ name: 'AddCart' }">
+            <router-link :to="{ name: 'AddCart' }" >
               <div class="me-3 cart-icon">
                 <i class="bi bi-bag fa-2x"></i>
                 <span
@@ -54,7 +54,7 @@
                     rounded-pill
                     bg-danger
                   "
-                  >{{ cart.length }}</span
+                  >{{ getCart.length }}</span
                 >
               </div>
             </router-link>
@@ -73,7 +73,7 @@
                     rounded-pill
                     bg-danger
                   "
-                  >{{ wishList.length }}</span
+                  >{{ getWishList.length }}</span
                 >
               </div>
             </router-link>
@@ -88,10 +88,13 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from "vuex";
+import { mapState, mapMutations,mapGetters } from "vuex";
 export default {
   computed: {
-    ...mapState(["products", "cart", "wishList"]),
+    ...mapGetters(["getCart","getWishList"]),
   },
+  methods: {
+    ...mapMutations(["addToCart"])
+  }
 };
 </script>
