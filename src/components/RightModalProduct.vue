@@ -42,12 +42,15 @@
             reviewes({{ productPreviews.reviewCount }})
           </div>
         </div>
-        <div v-show="tabDetails">details tab content</div>
-        <div v-show="tabReviews">review tab content</div>
+        <div>details tab content</div>
+        <div>review tab content</div>
       </div>
     </div>
     <div class="rs-footer py-3 d-flex align-items-center">
-      <div class="me-3 like-icon cursor-pointer" @click="addToWishlist(productPreviews)">
+      <div
+        class="me-3 like-icon cursor-pointer"
+        @click="addToWishlist(productPreviews)"
+      >
         <i
           class="bi"
           :class="[
@@ -75,7 +78,7 @@
 import { mapMutations } from "vuex";
 export default {
   methods: {
-    ...mapMutations(["clsoePreview", "addToCart","addToWishlist"]),
+    ...mapMutations(["clsoePreview", "addToCart", "addToWishlist"]),
   },
   props: ["productPreviews"],
 };

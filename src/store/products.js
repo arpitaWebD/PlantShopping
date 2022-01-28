@@ -77,7 +77,7 @@ const products = {
                 p => p.id === payload.id
             );
             if (cartProduct) {
-                if( payload.qty < 10) {
+                if (payload.qty < 10) {
                     payload.qty++;
                     payload.tprice = payload.price * payload.qty;
                 }
@@ -100,13 +100,12 @@ const products = {
         removeQty(state, payload) {
             if (payload.qty > 0) {
                 payload.qty--;
-                if(payload.qty === 0 ){
+                if (payload.qty === 0) {
                     state.cart.splice(state.cart.indexOf(payload), 1);
                 }
             }
             payload.tprice = payload.price * payload.qty;
         },
-
         removeWishList(state, payload) {
             state.wishList.splice(state.wishList.indexOf(payload), 1);
             payload.likeProductq = !(payload.likeProductq);
@@ -120,13 +119,11 @@ const products = {
             const wishlistProduct = state.wishList.find(
                 p => p.id === payload.id
             );
-            console.log(payload.likeProductq);
             if ((payload.likeProductq === true)) {
                 if (wishlistProduct) {
-                    console.log("fail");
+                    console.log("No Product in Wishlist");
                 } else {
                     state.wishList.push(payload);
-                    console.log("sucess");
                 }
             } else {
                 state.wishList.splice(state.wishList.indexOf(payload), 1);
@@ -158,7 +155,7 @@ const products = {
     },
     getters: {
         getProduct(state) {
-           return state.products;
+            return state.products;
         },
         getCart(state) {
             return state.cart;
@@ -177,7 +174,7 @@ const products = {
             state.cart.forEach(payload => (totalItems += payload.qty));
             return totalItems;
         },
-        getTotalPrice: (state) => {
+        getTotalPrice: (state, payload) => {
             let totalPrice = 0;
             state.cart.forEach(payload => (totalPrice += payload.price * payload.qty));
             return totalPrice;

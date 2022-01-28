@@ -1,5 +1,8 @@
 <template>
-  <div class="product-card p-4 border my-2">
+  <div
+    class="product-card p-4 border my-2"
+    :class="{ active: productPreview(products) }"
+  >
     <div class="img-section text-center">
       <img
         :src="products.url"
@@ -41,6 +44,7 @@
         <button
           class="btn secondary-btn"
           type="button"
+          :disabled="!(products.qty < 10)"
           @click="addToCart(products)"
         >
           Add to cart
@@ -51,10 +55,10 @@
 </template>
 
 <script>
-import { mapMutations,mapGetters } from "vuex";
+import { mapMutations, mapGetters } from "vuex";
 export default {
   computed: {
-    ...mapGetters(["getProduct","getCart", "getWishList"])
+    ...mapGetters(["getProduct", "getCart", "getWishList"]),
   },
   methods: {
     ...mapMutations([

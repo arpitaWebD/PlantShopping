@@ -369,6 +369,9 @@ input:focus {
   max-height: 500px;
   height: auto;
 }
+.search-dropdown.closed {
+  max-height: 0;
+}
 .search-dropdown ul li {
   padding: 10px;
   cursor: pointer;
@@ -386,12 +389,13 @@ input:focus {
   border-radius: 0 0 15px 15px;
 }
 
-/* .search-dropdown ul {
-  border-radius: 0 0 15px 15px;
-} */
+.btn:disabled {
+ cursor: not-allowed;
+pointer-events: visible;
+}
 
 .product-detail {
-  height: calc(100% - 100px);
+  height: calc(100% - 73px);
   overflow: auto;
 }
 

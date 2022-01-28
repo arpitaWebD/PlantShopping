@@ -5,7 +5,14 @@
         class="border-end p-4 h-100 overflow-auto"
         :class="[getShowPreview ? 'col-md-7 col-lg-8' : 'col-lg-12 col-md-12']"
       >
-        <Search :searchItem="searchItem" :filterProduct="filterProduct" />
+        <Search
+          :searchItem="searchItem"
+          :clickClose="clickClose"
+          :filterProduct="filterProduct"
+          :focusOpen="focusOpen"
+          :close="close"
+          :modal="modal"
+        />
         <div v-if="filterProduct.length">
           <div class="row g-3 m-0">
             <div
@@ -51,11 +58,13 @@ export default {
   data() {
     return {
       search: "",
+      close: false,
+      modal: false,
     };
   },
   computed: {
-    ...mapState([ "isActive"]),
-    ...mapGetters(["getProduct","getShowPreview","getProductPreviews"]),
+    ...mapState(["isActive"]),
+    ...mapGetters(["getProduct", "getShowPreview", "getProductPreviews"]),
 
     filterProduct() {
       return this.getProduct.filter((product) => {
@@ -69,7 +78,16 @@ export default {
     ...mapMutations(["productPreview"]),
     searchItem(search) {
       this.search = search;
+      this.close = !this.close;
       return search;
+    },
+    focusOpen() {
+      this.modal = true;
+      this.close = false;
+    },
+    clickClose() {
+      this.close = !this.close;
+      this.modal = false;
     },
   },
 };

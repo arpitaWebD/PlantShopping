@@ -41,7 +41,7 @@
         </div>
         <div class="d-flex justify-content-center align-items-center">
           <div class="dropdown">
-            <router-link :to="{ name: 'AddCart' }" >
+            <router-link :to="{ name: 'AddCart' }">
               <div class="me-3 cart-icon">
                 <i class="bi bi-bag fa-2x"></i>
                 <span
@@ -91,7 +91,7 @@
 import { mapGetters } from "vuex";
 export default {
   computed: {
-    ...mapGetters(["getCart","getWishList"]),
+    ...mapGetters(["getCart", "getWishList"]),
   },
 };
 </script>
